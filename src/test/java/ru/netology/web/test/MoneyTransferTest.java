@@ -62,8 +62,3 @@ class MoneyTransferTest {
     }
 
 }
-
-//$("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']").find("[data-test-id='action-deposit']").click(); // transferButton
-//$("[data-test-id=amount] input").setValue(Integer.toString(value)); // transferSumField
-//$("[data-test-id=from] input").setValue(String.valueOf(DataHelper.getSecondCardNumber())); // transferCardField
-//$("[data-test-id=action-transfer]").click(); // applyButton
