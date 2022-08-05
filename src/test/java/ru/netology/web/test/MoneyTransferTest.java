@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.LoginPageV2;
+import ru.netology.web.page.TransferPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -27,13 +28,15 @@ class MoneyTransferTest {
     void shouldTransferMoneySecondToFirstCard() {
         int value = 100;
         val dashboardPage = new DashboardPage();
-        var FirstCardInitialBalance = dashboardPage.getFirstCardBalance();
-        var SecondCardInitialBalance = dashboardPage.getSecondCardBalance();
-        val dashboardPage2 = dashboardPage.TransferMoneySecondToFirst(value);
-        var FirstCardFinalBalance = dashboardPage2.getFirstCardBalance();
-        var SecondCardFinalBalance = dashboardPage2.getSecondCardBalance();
-        Assertions.assertEquals(SecondCardInitialBalance - value, SecondCardFinalBalance);
-        Assertions.assertEquals(FirstCardInitialBalance + value, FirstCardFinalBalance);
+        var firstCardBalance = dashboardPage.getFirstCardBalance();
+        var secondCardBalance = dashboardPage.getSecondCardBalance();
+        val dashboardPage2 = dashboardPage.TransferButtonSecondToFirst();
+        val transferPage = new TransferPage();
+        val transferPage2 = transferPage.ImportTransferDataSecondToFirst(value);
+        var firstCardBalance1 = dashboardPage2.getFirstCardBalance();
+        var secondCardBalance1 = dashboardPage2.getSecondCardBalance();
+        Assertions.assertEquals(secondCardBalance - value, secondCardBalance1);
+        Assertions.assertEquals(firstCardBalance + value, firstCardBalance1);
 
     }
 
@@ -41,13 +44,15 @@ class MoneyTransferTest {
     void shouldTransferMoneyFirstToSecondCard() {
         int value = 100;
         val dashboardPage = new DashboardPage();
-        var FirstCardInitialBalance = dashboardPage.getFirstCardBalance();
-        var SecondCardInitialBalance = dashboardPage.getSecondCardBalance();
-        val dashboardPage2 = dashboardPage.TransferMoneyFirstToSecond(value);
-        var FirstCardFinalBalance = dashboardPage2.getFirstCardBalance();
-        var SecondCardFinalBalance = dashboardPage2.getSecondCardBalance();
-        Assertions.assertEquals(FirstCardInitialBalance - value, FirstCardFinalBalance);
-        Assertions.assertEquals(SecondCardInitialBalance + value, SecondCardFinalBalance);
+        var firstCardBalance = dashboardPage.getFirstCardBalance();
+        var secondCardBalance = dashboardPage.getSecondCardBalance();
+        val dashboardPage2 = dashboardPage.TransferButtonFirstToSecond();
+        val transferPage = new TransferPage();
+        val transferPage2 = transferPage.ImportTransferDataFirstToSecond(value);
+        var firstCardBalance1 = dashboardPage2.getFirstCardBalance();
+        var secondCardBalance1 = dashboardPage2.getSecondCardBalance();
+        Assertions.assertEquals(firstCardBalance - value, firstCardBalance1);
+        Assertions.assertEquals(secondCardBalance + value, secondCardBalance1);
 
     }
 
@@ -55,10 +60,10 @@ class MoneyTransferTest {
     void DoNotShouldTransferMoneyFirstToSecondCardAfterLimit() {
         int value = 100;
         val dashboardPage = new DashboardPage();
-        var SecondCardInitialBalance = dashboardPage.getSecondCardBalance();
-        val dashboardPage2 = dashboardPage.TransferMoneySecondToFirst(value + SecondCardInitialBalance);
-        dashboardPage2.getNotification();
-
+        var secondCardBalance = dashboardPage.getSecondCardBalance();
+        val dashboardPage2 = dashboardPage.TransferButtonSecondToFirst();
+        val transferPage = new TransferPage();
+        val transferPage2 = transferPage.ImportTransferDataSecondToFirst(value);
+        transferPage2.getNotification();
     }
-
 }

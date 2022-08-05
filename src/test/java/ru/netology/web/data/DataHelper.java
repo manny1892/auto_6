@@ -42,5 +42,4 @@ public class DataHelper {
         return new CardData("5559 0000 0000 0002");
     }
 
-
 }

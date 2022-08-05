@@ -3,7 +3,6 @@ package ru.netology.web.page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
-import ru.netology.web.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -18,31 +17,20 @@ public class DashboardPage {
     private SelenideElement transferToFirstButton = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']").find("[data-test-id='action-deposit']");
     private SelenideElement transferToSecondButton = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']").find("[data-test-id='action-deposit']");
 
-    private SelenideElement transferSumField = $("[data-test-id=amount] input");
-    private SelenideElement transferCardField = $("[data-test-id=from] input");
-    private SelenideElement applyButton = $("[data-test-id=action-transfer]");
-    private SelenideElement notification = $("[data-test-id=error-notification]");
-
 
     public DashboardPage() {
         heading.shouldBe(visible);
     }
 
-    public DashboardPage TransferMoneySecondToFirst(int value) {
+    public DashboardPage TransferButtonSecondToFirst() {
         heading.shouldBe(visible);
         transferToFirstButton.click();
-        transferSumField.setValue(Integer.toString(value));
-        transferCardField.setValue(String.valueOf(DataHelper.getSecondCardNumber()));
-        applyButton.click();
         return new DashboardPage();
     }
 
-    public DashboardPage TransferMoneyFirstToSecond(int value) {
+    public DashboardPage TransferButtonFirstToSecond() {
         heading.shouldBe(visible);
         transferToSecondButton.click();
-        transferSumField.setValue(Integer.toString(value));
-        transferCardField.setValue(String.valueOf(DataHelper.getFirstCardNumber()));
-        applyButton.click();
         return new DashboardPage();
     }
 
@@ -63,8 +51,4 @@ public class DashboardPage {
         return Integer.parseInt(value);
     }
 
-    public SelenideElement getNotification() {
-        val text = notification.shouldHave(exactText("Перевод не возможен. Баланс карты превышен"));
-        return text;
-    }
 }
