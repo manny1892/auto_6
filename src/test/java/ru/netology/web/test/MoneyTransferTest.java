@@ -30,9 +30,9 @@ class MoneyTransferTest {
         val dashboardPage = new DashboardPage();
         var firstCardBalance = dashboardPage.getFirstCardBalance();
         var secondCardBalance = dashboardPage.getSecondCardBalance();
-        val dashboardPage2 = dashboardPage.TransferButtonSecondToFirst();
+        val dashboardPage2 = dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
-        val transferPage2 = transferPage.ImportTransferDataSecondToFirst(value);
+        val transferPage2 = transferPage.importTransferDataSecondToFirst(value);
         var firstCardBalance1 = dashboardPage2.getFirstCardBalance();
         var secondCardBalance1 = dashboardPage2.getSecondCardBalance();
         Assertions.assertEquals(secondCardBalance - value, secondCardBalance1);
@@ -46,9 +46,9 @@ class MoneyTransferTest {
         val dashboardPage = new DashboardPage();
         var firstCardBalance = dashboardPage.getFirstCardBalance();
         var secondCardBalance = dashboardPage.getSecondCardBalance();
-        val dashboardPage2 = dashboardPage.TransferButtonFirstToSecond();
+        val dashboardPage2 = dashboardPage.transferButtonFirstToSecond();
         val transferPage = new TransferPage();
-        val transferPage2 = transferPage.ImportTransferDataFirstToSecond(value);
+        val transferPage2 = transferPage.importTransferDataFirstToSecond(value);
         var firstCardBalance1 = dashboardPage2.getFirstCardBalance();
         var secondCardBalance1 = dashboardPage2.getSecondCardBalance();
         Assertions.assertEquals(firstCardBalance - value, firstCardBalance1);
@@ -57,13 +57,13 @@ class MoneyTransferTest {
     }
 
     @Test
-    void DoNotShouldTransferMoneyFirstToSecondCardAfterLimit() {
+    void doNotShouldTransferMoneyFirstToSecondCardAfterLimit() {
         int value = 100;
         val dashboardPage = new DashboardPage();
         var secondCardBalance = dashboardPage.getSecondCardBalance();
-        val dashboardPage2 = dashboardPage.TransferButtonSecondToFirst();
+        val dashboardPage2 = dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
-        val transferPage2 = transferPage.ImportTransferDataSecondToFirst(value);
+        val transferPage2 = transferPage.importTransferDataSecondToFirst(value);
         transferPage2.getNotification();
     }
 }

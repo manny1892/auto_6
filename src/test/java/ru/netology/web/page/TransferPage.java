@@ -13,14 +13,14 @@ public class TransferPage {
     private SelenideElement notification = $("[data-test-id=error-notification]");
 
 
-    public TransferPage ImportTransferDataSecondToFirst(int value) {
+    public TransferPage importTransferDataSecondToFirst(int value) {
         transferSumField.setValue(Integer.toString(value));
         transferCardField.setValue(String.valueOf(DataHelper.getSecondCardNumber()));
         applyButton.click();
         return new TransferPage();
     }
 
-    public TransferPage ImportTransferDataFirstToSecond(int value) {
+    public TransferPage importTransferDataFirstToSecond(int value) {
         transferSumField.setValue(Integer.toString(value));
         transferCardField.setValue(String.valueOf(DataHelper.getFirstCardNumber()));
         applyButton.click();

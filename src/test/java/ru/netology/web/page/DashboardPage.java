@@ -22,13 +22,13 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
-    public DashboardPage TransferButtonSecondToFirst() {
+    public DashboardPage transferButtonSecondToFirst() {
         heading.shouldBe(visible);
         transferToFirstButton.click();
         return new DashboardPage();
     }
 
-    public DashboardPage TransferButtonFirstToSecond() {
+    public DashboardPage transferButtonFirstToSecond() {
         heading.shouldBe(visible);
         transferToSecondButton.click();
         return new DashboardPage();
