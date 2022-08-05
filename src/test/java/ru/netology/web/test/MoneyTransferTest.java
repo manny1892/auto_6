@@ -63,7 +63,7 @@ class MoneyTransferTest {
         var secondCardBalance = dashboardPage.getSecondCardBalance();
         val dashboardPage2 = dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
-        val transferPage2 = transferPage.importTransferDataSecondToFirst(value);
+        val transferPage2 = transferPage.importTransferDataSecondToFirst(value+secondCardBalance);
         transferPage2.getNotification();
     }
 }
