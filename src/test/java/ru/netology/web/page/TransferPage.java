@@ -1,10 +1,10 @@
 package ru.netology.web.page;
 
 import com.codeborne.selenide.SelenideElement;
-import ru.netology.web.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
+
 public class TransferPage {
 
     private SelenideElement transferSumField = $("[data-test-id=amount] input");
@@ -13,22 +13,13 @@ public class TransferPage {
     private SelenideElement notification = $("[data-test-id=error-notification]");
 
 
-    public TransferPage importTransferDataSecondToFirst(int value) {
+    public void importTransferData(int value, String cardNumber) {
         transferSumField.setValue(Integer.toString(value));
-        transferCardField.setValue(String.valueOf(DataHelper.getSecondCardNumber()));
+        transferCardField.setValue(String.valueOf(cardNumber));
         applyButton.click();
-        return new TransferPage();
-    }
-
-    public TransferPage importTransferDataFirstToSecond(int value) {
-        transferSumField.setValue(Integer.toString(value));
-        transferCardField.setValue(String.valueOf(DataHelper.getFirstCardNumber()));
-        applyButton.click();
-        return new TransferPage();
     }
 
     public void getNotification() {
-        notification.shouldHave(exactText("Перевод не возможен. Баланс карты превышен"));
-        notification.shouldBe(visible);
+        notification.shouldHave(exactText("Перевод не возможен. Баланс карты превышен")).shouldBe(visible);
     }
 }

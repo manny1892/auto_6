@@ -22,16 +22,12 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
-    public DashboardPage transferButtonSecondToFirst() {
-        heading.shouldBe(visible);
+    public void transferButtonSecondToFirst() {
         transferToFirstButton.click();
-        return new DashboardPage();
     }
 
-    public DashboardPage transferButtonFirstToSecond() {
-        heading.shouldBe(visible);
+    public void transferButtonFirstToSecond() {
         transferToSecondButton.click();
-        return new DashboardPage();
     }
 
     public int getFirstCardBalance() {
@@ -50,5 +46,4 @@ public class DashboardPage {
         val value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
     }
-
 }
